@@ -66,3 +66,78 @@ class AppHeader extends StatelessWidget {
     );
   }
 }
+
+// HOME SCREEN
+class HomeScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              AppHeader(title: 'Travel Guide - Home', context: context),
+              Image.asset(
+                'assets/home.jpg',
+                height: 220,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
+              Container(
+                padding: EdgeInsets.all(16),
+                color: Colors.teal.shade50,
+                child: Text(
+                  'Welcome to Travel Guide App! Explore the beautiful cities and landmarks of Pakistan.',
+                  style: TextStyle(fontSize: 16),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              SizedBox(height: 10),
+              RichText(
+                text: TextSpan(
+                  text: 'Explore ',
+                  style: TextStyle(color: Colors.black, fontSize: 18),
+                  children: [
+                    TextSpan(
+                      text: 'Pakistan ',
+                      style: TextStyle(
+                        color: Colors.teal,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                    TextSpan(text: 'with Us!'),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(16),
+                child: TextField(
+                  decoration: InputDecoration(
+                    labelText: 'Enter City Name',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Let’s Explore Pakistan!')),
+                  );
+                },
+                child: Text('Start Exploring'),
+              ),
+              TextButton(
+                onPressed: () {
+                  print('More info button pressed');
+                },
+                child: Text('More Info'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
