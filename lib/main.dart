@@ -141,7 +141,7 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-// ----------------- LIST SCREEN -----------------
+// LIST SCREEN
 class ListScreen extends StatelessWidget {
   final List<Map<String, String>> destinations = [
     {'name': 'Lahore', 'desc': 'The cultural heart of Pakistan, famous for food and heritage.'},
@@ -177,6 +177,70 @@ class ListScreen extends StatelessWidget {
                     ),
                   );
                 },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// ----------------- ABOUT SCREEN -----------------
+class AboutScreen extends StatelessWidget {
+  final List<Map<String, String>> attractions = [
+    {'image': 'assets/badshahi.jpg', 'name': 'Badshahi Mosque (Lahore)'},
+    {'image': 'assets/faisal.jpg', 'name': 'Faisal Mosque (Islamabad)'},
+    {'image': 'assets/minar.jpg', 'name': 'Minar-e-Pakistan (Lahore)'},
+    {'image': 'assets/mazar.jpg', 'name': 'Mazar-e-Quaid (Karachi)'},
+    {'image': 'assets/hunza.jpg', 'name': 'Hunza Valley (Gilgit Baltistan)'},
+    {'image': 'assets/k2.jpg', 'name': 'K2 Mountain (Skardu)'},
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          children: [
+            AppHeader(title: 'Travel Guide - About', context: context),
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.all(10),
+                child: GridView.count(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                  children: attractions.map((place) {
+                    return Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      clipBehavior: Clip.antiAlias,
+                      elevation: 3,
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: Image.asset(
+                              place['image']!,
+                              fit: BoxFit.cover,
+                              width: double.infinity,
+                            ),
+                          ),
+                          Container(
+                            color: Colors.teal.shade50,
+                            padding: EdgeInsets.all(6),
+                            child: Text(
+                              place['name']!,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 13),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }).toList(),
+                ),
               ),
             ),
           ],
